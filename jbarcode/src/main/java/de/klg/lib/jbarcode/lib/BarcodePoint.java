@@ -15,8 +15,8 @@ package de.klg.lib.jbarcode.lib;
  */
 public class BarcodePoint {
 
-  private float x = 0.0f;
-  private float y = 0.0f;
+  private float x;
+  private float y;
 
   public float getX() {
     return x;

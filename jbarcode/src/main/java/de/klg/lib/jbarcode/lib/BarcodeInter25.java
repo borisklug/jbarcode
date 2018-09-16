@@ -20,7 +20,7 @@ public class BarcodeInter25 extends Barcode {
   /**
    * The bars to generate the code.
    */
-  static byte BARS[][] = { { 1, 1, 2, 2, 1 }, { 2, 1, 1, 1, 2 }, { 1, 2, 1, 1, 2 }, { 2, 2, 1, 1, 1 },
+  static final byte[][] BARS = { { 1, 1, 2, 2, 1 }, { 2, 1, 1, 1, 2 }, { 1, 2, 1, 1, 2 }, { 2, 2, 1, 1, 1 },
       { 1, 1, 2, 1, 2 }, { 2, 1, 2, 1, 1 }, { 1, 2, 2, 1, 1 }, { 1, 1, 1, 2, 2 }, { 2, 1, 1, 2, 1 },
       { 1, 2, 1, 2, 1 } };
 
@@ -45,20 +45,20 @@ public class BarcodeInter25 extends Barcode {
    * @return a <CODE>String</CODE> with only numeric characters
    */
   public static String keepNumbers(String text) {
-    StringBuffer sb = new StringBuffer();
+    StringBuilder sb = new StringBuilder();
     for (int k = 0; k < text.length(); ++k) {
       char c = text.charAt(k);
-      if (c >= '0' && c <= '9')
+      if (c >= '0' && c <= '9') {
         sb.append(c);
+      }
     }
     return sb.toString();
   }
 
   /**
    * The raw text for this barcode is just the text with only numbers
-   *
    */
-
+  @Override
   public String toRawText(String text) {
     return keepNumbers(text);
   }
@@ -87,10 +87,11 @@ public class BarcodeInter25 extends Barcode {
    *             stripped before processing
    * @return the barcode
    */
+  @Override
   public byte[] getBars() {
     String text = toRawText(code);
     text = keepNumbers(text);
-    byte bars[] = new byte[text.length() * 5 + 7];
+    byte[] bars = new byte[text.length() * 5 + 7];
     int pb = 0;
     bars[pb++] = 1;
     bars[pb++] = 1;
@@ -100,8 +101,8 @@ public class BarcodeInter25 extends Barcode {
     for (int k = 0; k < len; ++k) {
       int c1 = text.charAt(k * 2) - '0';
       int c2 = text.charAt(k * 2 + 1) - '0';
-      byte b1[] = BARS[c1];
-      byte b2[] = BARS[c2];
+      byte[] b1 = BARS[c1];
+      byte[] b2 = BARS[c2];
       for (int j = 0; j < 5; ++j) {
         bars[pb++] = b1[j];
         bars[pb++] = b2[j];

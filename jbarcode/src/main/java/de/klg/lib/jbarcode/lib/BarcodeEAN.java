@@ -19,17 +19,17 @@ package de.klg.lib.jbarcode.lib;
 public class BarcodeEAN extends Barcode {
 
   /** The bar positions that are guard bars. */
-  static int GUARD_EMPTY[] = {};
+  static final int[] GUARD_EMPTY = {};
   /** The bar positions that are guard bars. */
-  static int GUARD_UPCA[] = { 0, 2, 4, 6, 28, 30, 52, 54, 56, 58 };
+  static final int[] GUARD_UPCA = { 0, 2, 4, 6, 28, 30, 52, 54, 56, 58 };
   /** The bar positions that are guard bars. */
-  static int GUARD_EAN13[] = { 0, 2, 28, 30, 56, 58 };
+  static final int[] GUARD_EAN13 = { 0, 2, 28, 30, 56, 58 };
   /** The bar positions that are guard bars. */
-  static int GUARD_EAN8[] = { 0, 2, 20, 22, 40, 42 };
+  static final int[] GUARD_EAN8 = { 0, 2, 20, 22, 40, 42 };
   /** The bar positions that are guard bars. */
-  static int GUARD_UPCE[] = { 0, 2, 28, 30, 32 };
+  static final int[] GUARD_UPCE = { 0, 2, 28, 30, 32 };
   /** The basic bar widths. */
-  static byte BARS[][] = { { 3, 2, 1, 1 }, // 0
+  static final byte[][] BARS = { { 3, 2, 1, 1 }, // 0
       { 2, 2, 2, 1 }, // 1
       { 2, 1, 2, 2 }, // 2
       { 1, 4, 1, 1 }, // 3
@@ -57,7 +57,7 @@ public class BarcodeEAN extends Barcode {
   static final int EVEN = 1;
 
   /** Sequence of parities to be used with EAN13. */
-  static byte PARITY13[][] = { { ODD, ODD, ODD, ODD, ODD, ODD }, // 0
+  static byte[][] PARITY13 = { { ODD, ODD, ODD, ODD, ODD, ODD }, // 0
       { ODD, ODD, EVEN, ODD, EVEN, EVEN }, // 1
       { ODD, ODD, EVEN, EVEN, ODD, EVEN }, // 2
       { ODD, ODD, EVEN, EVEN, EVEN, ODD }, // 3
@@ -70,14 +70,14 @@ public class BarcodeEAN extends Barcode {
   };
 
   /** Sequence of parities to be used with supplemental 2. */
-  static byte PARITY2[][] = { { ODD, ODD }, // 0
+  static byte[][] PARITY2 = { { ODD, ODD }, // 0
       { ODD, EVEN }, // 1
       { EVEN, ODD }, // 2
       { EVEN, EVEN } // 3
   };
 
   /** Sequence of parities to be used with supplemental 2. */
-  static byte PARITY5[][] = { { EVEN, EVEN, ODD, ODD, ODD }, // 0
+  static byte[][] PARITY5 = { { EVEN, EVEN, ODD, ODD, ODD }, // 0
       { EVEN, ODD, EVEN, ODD, ODD }, // 1
       { EVEN, ODD, ODD, EVEN, ODD }, // 2
       { EVEN, ODD, ODD, ODD, EVEN }, // 3
@@ -90,7 +90,7 @@ public class BarcodeEAN extends Barcode {
   };
 
   /** Sequence of parities to be used with UPCE. */
-  static byte PARITYE[][] = { { EVEN, EVEN, EVEN, ODD, ODD, ODD }, // 0
+  static byte[][] PARITYE = { { EVEN, EVEN, EVEN, ODD, ODD, ODD }, // 0
       { EVEN, EVEN, ODD, EVEN, ODD, ODD }, // 1
       { EVEN, EVEN, ODD, ODD, EVEN, ODD }, // 2
       { EVEN, EVEN, ODD, ODD, ODD, EVEN }, // 3
@@ -142,7 +142,7 @@ public class BarcodeEAN extends Barcode {
    * @return the 8 converted digits or <CODE>null</CODE> if the code could not be
    *         converted
    */
-  static public String convertUPCAtoUPCE(String text) {
+  public static String convertUPCAtoUPCE(String text) {
     if (text.length() != 12 || !(text.startsWith("0") || text.startsWith("1")))
       return null;
     if (text.substring(3, 6).equals("000") || text.substring(3, 6).equals("100")
@@ -172,17 +172,19 @@ public class BarcodeEAN extends Barcode {
     String _code = toRawText(code);
 
     int code[] = new int[_code.length()];
-    for (int k = 0; k < code.length; ++k)
+    for (int k = 0; k < code.length; ++k) {
       code[k] = _code.charAt(k) - '0';
-    byte bars[] = new byte[TOTALBARS_EAN13];
+    }
+
+    byte[] bars = new byte[TOTALBARS_EAN13];
     int pb = 0;
     bars[pb++] = 1;
     bars[pb++] = 1;
     bars[pb++] = 1;
-    byte sequence[] = PARITY13[code[0]];
+    byte[] sequence = PARITY13[code[0]];
     for (int k = 0; k < sequence.length; ++k) {
       int c = code[k + 1];
-      byte stripes[] = BARS[c];
+      byte[] stripes = BARS[c];
       if (sequence[k] == ODD) {
         bars[pb++] = stripes[0];
         bars[pb++] = stripes[1];
@@ -202,7 +204,7 @@ public class BarcodeEAN extends Barcode {
     bars[pb++] = 1;
     for (int k = 7; k < 13; ++k) {
       int c = code[k];
-      byte stripes[] = BARS[c];
+      byte[] stripes = BARS[c];
       bars[pb++] = stripes[0];
       bars[pb++] = stripes[1];
       bars[pb++] = stripes[2];
@@ -210,7 +212,7 @@ public class BarcodeEAN extends Barcode {
     }
     bars[pb++] = 1;
     bars[pb++] = 1;
-    bars[pb++] = 1;
+    bars[pb] = 1;
     return bars;
   }
 
@@ -221,17 +223,18 @@ public class BarcodeEAN extends Barcode {
    */
   public byte[] getBarsEAN8() {
     String _code = toRawText(code);
-    int code[] = new int[_code.length()];
-    for (int k = 0; k < code.length; ++k)
+    int[] code = new int[_code.length()];
+    for (int k = 0; k < code.length; ++k) {
       code[k] = _code.charAt(k) - '0';
-    byte bars[] = new byte[TOTALBARS_EAN8];
+    }
+    byte[] bars = new byte[TOTALBARS_EAN8];
     int pb = 0;
     bars[pb++] = 1;
     bars[pb++] = 1;
     bars[pb++] = 1;
     for (int k = 0; k < 4; ++k) {
       int c = code[k];
-      byte stripes[] = BARS[c];
+      byte[] stripes = BARS[c];
       bars[pb++] = stripes[0];
       bars[pb++] = stripes[1];
       bars[pb++] = stripes[2];
@@ -244,7 +247,7 @@ public class BarcodeEAN extends Barcode {
     bars[pb++] = 1;
     for (int k = 4; k < 8; ++k) {
       int c = code[k];
-      byte stripes[] = BARS[c];
+      byte[] stripes = BARS[c];
       bars[pb++] = stripes[0];
       bars[pb++] = stripes[1];
       bars[pb++] = stripes[2];
@@ -252,7 +255,7 @@ public class BarcodeEAN extends Barcode {
     }
     bars[pb++] = 1;
     bars[pb++] = 1;
-    bars[pb++] = 1;
+    bars[pb] = 1;
     return bars;
   }
 
@@ -263,19 +266,21 @@ public class BarcodeEAN extends Barcode {
    */
   public byte[] getBarsUPCE() {
     String _code = toRawText(code);
-    int code[] = new int[_code.length()];
-    for (int k = 0; k < code.length; ++k)
+    int[] code = new int[_code.length()];
+    for (int k = 0; k < code.length; ++k) {
       code[k] = _code.charAt(k) - '0';
-    byte bars[] = new byte[TOTALBARS_UPCE];
+    }
+
+    byte[] bars = new byte[TOTALBARS_UPCE];
     boolean flip = (code[0] != 0);
     int pb = 0;
     bars[pb++] = 1;
     bars[pb++] = 1;
     bars[pb++] = 1;
-    byte sequence[] = PARITYE[code[code.length - 1]];
+    byte[] sequence = PARITYE[code[code.length - 1]];
     for (int k = 1; k < code.length - 1; ++k) {
       int c = code[k];
-      byte stripes[] = BARS[c];
+      byte[] stripes = BARS[c];
       if (sequence[k - 1] == (flip ? EVEN : ODD)) {
         bars[pb++] = stripes[0];
         bars[pb++] = stripes[1];
@@ -293,7 +298,7 @@ public class BarcodeEAN extends Barcode {
     bars[pb++] = 1;
     bars[pb++] = 1;
     bars[pb++] = 1;
-    bars[pb++] = 1;
+    bars[pb] = 1;
     return bars;
   }
 
@@ -342,11 +347,13 @@ public class BarcodeEAN extends Barcode {
    * @param _code the text with 5 digits
    * @return the barcode
    */
-  public static byte[] getBarsSupplemental5(String _code) {
-    int code[] = new int[5];
-    for (int k = 0; k < code.length; ++k)
-      code[k] = _code.charAt(k) - '0';
-    byte bars[] = new byte[TOTALBARS_SUPP5];
+  public static byte[] getBarsSupplemental5(String theCode) {
+    int[] code = new int[5];
+    for (int k = 0; k < code.length; ++k) {
+      code[k] = theCode.charAt(k) - '0';
+    }
+
+    byte[] bars = new byte[TOTALBARS_SUPP5];
     int pb = 0;
     int parity = (((code[0] + code[2] + code[4]) * 3) + ((code[1] + code[3]) * 9)) % 10;
     bars[pb++] = 1;

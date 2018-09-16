@@ -25,17 +25,17 @@ public class BarcodeEAN128Field {
    * Length of the content of the field if len is fixed, otherwise maximal lenfth
    * of the content
    */
-  private int contentlen = 0;
+  private int contentlen;
   /**
    * True if the content can only contain numbers false if alphanumerical chars
    * and numbers are allowed
    */
-  private boolean contentonlynr = false;
+  private boolean contentonlynr;
   /**
    * True if the length of the contents is fix, false if length of contents is
    * variable
    */
-  private boolean fixcontentlen = false;
+  private boolean fixcontentlen;
 
   /**
    * Constructor

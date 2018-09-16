@@ -77,7 +77,7 @@ public abstract class Barcode {
    * The name of the font to use for writing the code below the barcode. If null,
    * the text is omitted
    */
-  protected String fontname = null;
+  protected String fontname;
 
   /**
    * If true, draw the human readable text below or above the barcode
@@ -139,7 +139,7 @@ public abstract class Barcode {
   /**
    * Show the guard bars for barcode EAN.
    */
-  protected boolean guardBars = false;
+  protected boolean guardBars;
 
   /**
    * The code type, see constants at the start of this document
@@ -150,7 +150,7 @@ public abstract class Barcode {
    * If true, use the array returned by getCharPos() to position the text below
    * the barcode. This is used e.g. for EAN13 / EAN8 enconding
    */
-  protected boolean useCharPos = false;
+  protected boolean useCharPos;
 
   /**
    * If true, the human readable text is draw below or above the barcode If false,
@@ -163,8 +163,8 @@ public abstract class Barcode {
   /**
    * If set to true, the human readable text is draw below or above the barcode
    */
-  public void setDrawtext(boolean _drawtext) {
-    drawtext = _drawtext;
+  public void setDrawtext(boolean drawtext) {
+    this.drawtext = drawtext;
   }
 
   /**
@@ -254,8 +254,8 @@ public abstract class Barcode {
   /**
    * Set the preflight width
    */
-  public void setPreflightWidth(int _preflightWidth) {
-    preflightWidth = _preflightWidth;
+  public void setPreflightWidth(int preflightWidth) {
+    this.preflightWidth = preflightWidth;
   }
 
   /**
@@ -270,8 +270,8 @@ public abstract class Barcode {
   /**
    * Sets the width of the smalles bar in pixel
    */
-  public void setBarWidth(int _barWidth) {
-    barWidth = _barWidth;
+  public void setBarWidth(int barWidth) {
+    this.barWidth = barWidth;
   }
 
   /**
@@ -284,8 +284,8 @@ public abstract class Barcode {
   /**
    * Set the state for special char drawing
    */
-  public void setUseCharPos(boolean _useCharPos) {
-    useCharPos = _useCharPos;
+  public void setUseCharPos(boolean useCharPos) {
+    this.useCharPos = useCharPos;
   }
 
   /**
@@ -298,8 +298,8 @@ public abstract class Barcode {
   /**
    * Set the relation between small bars and wide bars. Normally 1
    */
-  public void setSmallwideMultiplyer(int _smallwideMultiplyer) {
-    smallwideMultiplyer = _smallwideMultiplyer;
+  public void setSmallwideMultiplyer(int smallwideMultiplyer) {
+    this.smallwideMultiplyer = smallwideMultiplyer;
   }
 
   /**
@@ -386,8 +386,8 @@ public abstract class Barcode {
   /**
    * Sets the maginication factor
    */
-  public void setMagnification(float _magnification) {
-    magnification = _magnification;
+  public void setMagnification(float magnification) {
+    this.magnification = magnification;
   }
 
   /**
@@ -435,8 +435,7 @@ public abstract class Barcode {
    * Get the position of the guard bars (if any)
    */
   public int[] getGuardBarsArray() {
-    int GUARD_EMPTY[] = {};
-    return GUARD_EMPTY;
+    return new int[0];
   }
 
   /**
@@ -447,8 +446,7 @@ public abstract class Barcode {
    * baseline where normal text drawing would start
    */
   public BarcodePoint[] getCharPosArray() {
-    BarcodePoint[] EMPTY = {};
-    return EMPTY;
+    return new BarcodePoint[0];
   }
 
   /**
@@ -459,8 +457,9 @@ public abstract class Barcode {
    */
   @Override
   public String toString() {
-    StringBuffer sb = new StringBuffer("Class: ");
-    sb.append(this.getClass().getName());
+    StringBuilder sb = new StringBuilder();
+    sb.append("Class: ");
+    sb.append(this.getClass().getSimpleName());
     sb.append(" - , barcode type = " + getBarcodetypename());
     sb.append("\ncode = '" + code + "'");
 
