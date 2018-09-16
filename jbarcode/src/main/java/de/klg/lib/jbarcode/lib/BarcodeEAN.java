@@ -57,7 +57,7 @@ public class BarcodeEAN extends Barcode {
   static final int EVEN = 1;
 
   /** Sequence of parities to be used with EAN13. */
-  static byte[][] PARITY13 = { { ODD, ODD, ODD, ODD, ODD, ODD }, // 0
+  static final byte[][] PARITY13 = { { ODD, ODD, ODD, ODD, ODD, ODD }, // 0
       { ODD, ODD, EVEN, ODD, EVEN, EVEN }, // 1
       { ODD, ODD, EVEN, EVEN, ODD, EVEN }, // 2
       { ODD, ODD, EVEN, EVEN, EVEN, ODD }, // 3
@@ -70,14 +70,14 @@ public class BarcodeEAN extends Barcode {
   };
 
   /** Sequence of parities to be used with supplemental 2. */
-  static byte[][] PARITY2 = { { ODD, ODD }, // 0
+  static final byte[][] PARITY2 = { { ODD, ODD }, // 0
       { ODD, EVEN }, // 1
       { EVEN, ODD }, // 2
       { EVEN, EVEN } // 3
   };
 
   /** Sequence of parities to be used with supplemental 2. */
-  static byte[][] PARITY5 = { { EVEN, EVEN, ODD, ODD, ODD }, // 0
+  static final byte[][] PARITY5 = { { EVEN, EVEN, ODD, ODD, ODD }, // 0
       { EVEN, ODD, EVEN, ODD, ODD }, // 1
       { EVEN, ODD, ODD, EVEN, ODD }, // 2
       { EVEN, ODD, ODD, ODD, EVEN }, // 3
@@ -90,7 +90,7 @@ public class BarcodeEAN extends Barcode {
   };
 
   /** Sequence of parities to be used with UPCE. */
-  static byte[][] PARITYE = { { EVEN, EVEN, EVEN, ODD, ODD, ODD }, // 0
+  static final byte[][] PARITYE = { { EVEN, EVEN, EVEN, ODD, ODD, ODD }, // 0
       { EVEN, EVEN, ODD, EVEN, ODD, ODD }, // 1
       { EVEN, EVEN, ODD, ODD, EVEN, ODD }, // 2
       { EVEN, EVEN, ODD, ODD, ODD, EVEN }, // 3
@@ -309,23 +309,24 @@ public class BarcodeEAN extends Barcode {
    */
   public byte[] getBarsSupplemental2() {
     String _code = toRawText(code);
-    int code[] = new int[2];
-    for (int k = 0; k < code.length; ++k)
+    int[] code = new int[2];
+    for (int k = 0; k < code.length; ++k) {
       code[k] = _code.charAt(k) - '0';
-    byte bars[] = new byte[TOTALBARS_SUPP2];
+    }
+    byte[] bars = new byte[TOTALBARS_SUPP2];
     int pb = 0;
     int parity = (code[0] * 10 + code[1]) % 4;
     bars[pb++] = 1;
     bars[pb++] = 1;
     bars[pb++] = 2;
-    byte sequence[] = PARITY2[parity];
+    byte[] sequence = PARITY2[parity];
     for (int k = 0; k < sequence.length; ++k) {
       if (k == 1) {
         bars[pb++] = 1;
         bars[pb++] = 1;
       }
       int c = code[k];
-      byte stripes[] = BARS[c];
+      byte[] stripes = BARS[c];
       if (sequence[k] == ODD) {
         bars[pb++] = stripes[0];
         bars[pb++] = stripes[1];
@@ -359,14 +360,14 @@ public class BarcodeEAN extends Barcode {
     bars[pb++] = 1;
     bars[pb++] = 1;
     bars[pb++] = 2;
-    byte sequence[] = PARITY5[parity];
+    byte[] sequence = PARITY5[parity];
     for (int k = 0; k < sequence.length; ++k) {
       if (k != 0) {
         bars[pb++] = 1;
         bars[pb++] = 1;
       }
       int c = code[k];
-      byte stripes[] = BARS[c];
+      byte[] stripes = BARS[c];
       if (sequence[k] == ODD) {
         bars[pb++] = stripes[0];
         bars[pb++] = stripes[1];
@@ -409,8 +410,6 @@ public class BarcodeEAN extends Barcode {
   /**
    * Get the position of the guard bars (if any). The position is given as an int
    * array, first bar is 0.
-   *
-   * @return int array with the guard bars
    */
   @Override
   public int[] getGuardBarsArray() {

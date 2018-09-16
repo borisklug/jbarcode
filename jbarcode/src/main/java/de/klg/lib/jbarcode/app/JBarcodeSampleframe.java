@@ -102,7 +102,7 @@ public class JBarcodeSampleframe extends JFrame {
   }
 
   // Component initialization
-  private void jbInit() throws Exception {
+  private void jbInit() {
     contentPane = (JPanel) this.getContentPane();
 
     this.setSize(new Dimension(526, 309));

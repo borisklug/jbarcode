@@ -53,7 +53,7 @@ public class JBarcodeSampleAboutBox extends JDialog implements ActionListener {
   }
 
   // Component initialization
-  private void jbInit() throws Exception {
+  private void jbInit() {
     this.setTitle("About");
     panel1.setLayout(borderLayout1);
     panel2.setLayout(borderLayout2);
