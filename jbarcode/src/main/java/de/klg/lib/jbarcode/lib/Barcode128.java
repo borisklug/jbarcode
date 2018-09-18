@@ -7,8 +7,6 @@
  */
 package de.klg.lib.jbarcode.lib;
 
-import java.util.Map;
-
 /**
  * Barcode generator class for the following barcodes:
  *
@@ -167,11 +165,8 @@ public class Barcode128 extends Barcode {
       return text;
     }
 
-    // Get the fields of the EAN128 standard
-    Map<String, BarcodeEAN128Field> ean128fields = BarcodeEAN128Textdecoder.getEAN128fieldlist();
-
     // Return the converted string
-    String out = BarcodeEAN128Textdecoder.toHumanText(text, ean128fields);
+    String out = BarcodeEAN128Textdecoder.toHumanText(text);
 
     if (out != null) {
       return out;
@@ -286,10 +281,11 @@ public class Barcode128 extends Barcode {
             currentCode = START_B;
             out += CODE_AC_TO_B;
             out += (char) (c - ' ');
-          } else if (c < ' ')
+          } else if (c < ' ') {
             out += (char) (c + 64);
-          else
+          } else {
             out += (char) (c - ' ');
+          }
         }
         break;
       case START_B:
