@@ -1,3 +1,4 @@
 language: java
+
 install:
-  - "mvn -B install"
+  mvn --settings .maven.xml -B install
