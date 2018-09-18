@@ -1,4 +1,4 @@
 language: java
 
 install:
-  mvn --settings .maven.xml -B install
+  mvn --settings .maven.xml -B clean deploy
