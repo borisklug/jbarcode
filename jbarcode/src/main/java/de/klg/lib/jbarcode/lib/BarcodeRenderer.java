@@ -165,7 +165,7 @@ public class BarcodeRenderer {
   }
 
   /**
-   * Export the barcode to a PNG file
+   * Export the barcode to a jpg file. png would be better
    *
    * @return 0 if no error occures, !=0 in case of an error
    */
