@@ -415,7 +415,7 @@ public abstract class Barcode {
    * (e.g. code 128), the text is converted before the bars are calculated (e.g.
    * for different subsets).
    */
-  abstract public byte[] getBars();
+  public abstract byte[] getBars();
 
   /**
    * Returns the sum of all bars in this array. Used for calculating the width of
@@ -463,7 +463,7 @@ public abstract class Barcode {
     sb.append(" - , barcode type = " + getBarcodetypename());
     sb.append("\ncode = '" + code + "'");
 
-    byte bars[];
+    byte[] bars;
     try {
       bars = getBars();
     } catch (Exception ex) {
