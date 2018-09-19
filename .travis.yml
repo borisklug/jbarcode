@@ -1,4 +1,4 @@
 language: java
 
-install:
+script:
   mvn --settings .maven.xml -f jbarcode/pom.xml -B clean deploy
