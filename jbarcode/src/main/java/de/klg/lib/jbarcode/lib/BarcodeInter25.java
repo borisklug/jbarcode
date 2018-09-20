@@ -34,7 +34,7 @@ public class BarcodeInter25 extends Barcode {
     barWidth = 1;
     smallwideMultiplyer = 3;
     preflightWidth = 10 * barWidth;
-    codeType = Barcode.CODE25INTER;
+    codeType = BarcodeType.CODE25INTER;
     code = "4001513000620";
   }
 

@@ -15,70 +15,10 @@ package de.klg.lib.jbarcode.lib;
  */
 public abstract class Barcode {
 
-  /**
-   * The version number of the JBarcode lib. The int just increases by every
-   * release. For a human readable version, see JBARCODE_VERSIONSTR
-   */
-  public static final int JBARCODE_VERSION = 1;
-
-  /** A type of barcode */
-  public static final int EAN13 = 1;
-
-  /** A type of barcode */
-  public static final int EAN8 = 2;
-
-  /** A type of barcode */
-  public static final int CODE128 = 3;
-
-  /** A type of barcode */
-  public static final int CODE128_RAW = 4;
-
-  /** Code 128 with only charset A */
-  public static final int CODE128_A = 5;
-
-  /** A type of barcode */
-  public static final int EAN128 = 6;
-
-  /** A type of barcode */
-  public static final int CODE128_UCC = 6; // same like EAN128
-
-  /** A type of barcode */
-  public static final int CODE25INTER = 7;
-
-  /*
-   * not yet implemented : public static final int UPCA = 99; public static final
-   * int UPCE = 99; public static final int SUPP2 = 99; public static final int
-   * SUPP5 = 99; public static final int POSTNET = 99; public static final int
-   * PLANET = 99; public static final int CODABAR = 99;
-   */
   /** Textalignment */
   public static final char ALIGN_LEFT = 1;
   public static final char ALIGN_RIGHT = 2;
   public static final char ALIGN_CENTER = 3;
-
-  /**
-   * Returns the type of the barcode as a string, e.g. "EAN13" or "code 128"
-   */
-  public String getBarcodetypename() {
-    switch (codeType) {
-    case EAN13:
-      return "EAN13";
-    case EAN8:
-      return "EAN8";
-    case CODE128:
-      return "code128";
-    case EAN128:
-      return "EAN128";
-    case CODE128_RAW:
-      return "code128raw";
-    case CODE128_A:
-      return "code128A";
-    case CODE25INTER:
-      return "2/5 interleave";
-    default:
-      return "???";
-    }
-  }
 
   /**
    * The name of the font to use for writing the code below the barcode. If null,
@@ -151,7 +91,7 @@ public abstract class Barcode {
   /**
    * The code type, see constants at the start of this document
    */
-  protected int codeType;
+  protected BarcodeType codeType;
 
   /**
    * If true, use the array returned by getCharPos() to position the text below
@@ -365,21 +305,11 @@ public abstract class Barcode {
     this.guardBars = guardBars;
   }
 
-  /**
-   * Gets the code type.
-   * 
-   * @return the code type
-   */
-  public int getCodeType() {
+  public BarcodeType getCodeType() {
     return codeType;
   }
 
-  /**
-   * Sets the code type.
-   * 
-   * @param codeType the code type
-   */
-  public void setCodeType(int codeType) {
+  public void setCodeType(BarcodeType codeType) {
     this.codeType = codeType;
   }
 
@@ -467,7 +397,7 @@ public abstract class Barcode {
     StringBuilder sb = new StringBuilder();
     sb.append("Class: ");
     sb.append(this.getClass().getSimpleName());
-    sb.append(" - , barcode type = " + getBarcodetypename());
+    sb.append(" - , barcode type = " + codeType);
     sb.append("\ncode = '" + code + "'");
 
     byte[] bars;

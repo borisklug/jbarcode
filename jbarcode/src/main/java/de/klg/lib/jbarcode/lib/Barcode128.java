@@ -109,7 +109,7 @@ public class Barcode128 extends Barcode {
     barWidth = 1;
     preflightWidth = barWidth * 10;
     barHeight = fontsize * 3;
-    codeType = CODE128;
+    codeType = BarcodeType.CODE128;
     code = "01040123453333361503123110123456";
   }
 
@@ -161,7 +161,7 @@ public class Barcode128 extends Barcode {
    */
   @Override
   public String toHumanText(String text) {
-    if (codeType != Barcode.EAN128) {
+    if (codeType != BarcodeType.EAN128) {
       return text;
     }
 
@@ -192,7 +192,7 @@ public class Barcode128 extends Barcode {
     boolean ean128 = false;
 
     // In mode "code128A" we force the charset A
-    if (codeType == Barcode.CODE128_A) {
+    if (codeType == BarcodeType.CODE128_A) {
       String out = "" + START_A;
       int tLen = text.length();
       int i = 0;
@@ -212,14 +212,14 @@ public class Barcode128 extends Barcode {
 
     // In raw mode, just return the text. The caller is responsible
     // to provide a valid code128 text
-    if (codeType == Barcode.CODE128_RAW) {
+    if (codeType == BarcodeType.CODE128_RAW) {
       return text;
     }
 
     // In EAN128, we have to add a FNC1 in front of the code
-    if (codeType == Barcode.EAN128) {
+    if (codeType == BarcodeType.EAN128) {
       ean128 = true;
-    } else if (codeType != Barcode.CODE128) {
+    } else if (codeType != BarcodeType.CODE128) {
       return null; // we cant handle other codes than this
     }
 

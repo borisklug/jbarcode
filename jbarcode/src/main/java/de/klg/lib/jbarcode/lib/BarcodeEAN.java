@@ -113,7 +113,7 @@ public class BarcodeEAN extends Barcode {
     guardBars = true;
     useCharPos = true;
     textAlignment = ALIGN_LEFT;
-    codeType = EAN13;
+    codeType = BarcodeType.EAN13;
     code = "4001513000620"; // Gerolsteiner Stille Quelle
   }
 
@@ -391,13 +391,13 @@ public class BarcodeEAN extends Barcode {
    */
   @Override
   public byte[] getBars() {
-    if (codeType == EAN13) {
+    if (codeType == BarcodeType.EAN13) {
       if (code.length() != 13) {
         return null;
       }
       return getBarsEAN13();
 
-    } else if (codeType == EAN8) {
+    } else if (codeType == BarcodeType.EAN8) {
       if (code.length() != 8) {
         return null;
       }
@@ -413,9 +413,9 @@ public class BarcodeEAN extends Barcode {
    */
   @Override
   public int[] getGuardBarsArray() {
-    if (codeType == EAN13) {
+    if (codeType == BarcodeType.EAN13) {
       return GUARD_EAN13;
-    } else if (codeType == EAN8) {
+    } else if (codeType == BarcodeType.EAN8) {
       return GUARD_EAN8;
     } else {
       return GUARD_EMPTY;
@@ -435,7 +435,7 @@ public class BarcodeEAN extends Barcode {
   public BarcodePoint[] getCharPosArray() {
 
     BarcodePoint[] pos = new BarcodePoint[13];
-    if (codeType == EAN13) {
+    if (codeType == BarcodeType.EAN13) {
       // 13 chars..
       int strech = 7;
       int x = 5;
@@ -455,7 +455,7 @@ public class BarcodeEAN extends Barcode {
       pos[11] = new BarcodePoint(x + (strech * 4), 0);
       pos[12] = new BarcodePoint(x + (strech * 5), 0);
 
-    } else if (codeType == EAN8) {
+    } else if (codeType == BarcodeType.EAN8) {
       // 8 chars to go
       int strech = 7;
       int x = 4;

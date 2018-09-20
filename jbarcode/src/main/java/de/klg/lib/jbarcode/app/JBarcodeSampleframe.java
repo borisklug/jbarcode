@@ -27,6 +27,7 @@ import de.klg.lib.jbarcode.lib.BarcodeComponent;
 import de.klg.lib.jbarcode.lib.BarcodeEAN;
 import de.klg.lib.jbarcode.lib.BarcodeInter25;
 import de.klg.lib.jbarcode.lib.BarcodeRenderer;
+import de.klg.lib.jbarcode.lib.BarcodeType;
 
 /**
  * The frame with the barcode and stuff of the sample application for JBarcode
@@ -93,7 +94,7 @@ public class JBarcodeSampleframe extends JFrame {
     // Setup a barcode for the start
     Barcode bc = new Barcode128();
     bc.setCode("Boris Klug");
-    bc.setCodeType(Barcode.CODE128);
+    bc.setCodeType(BarcodeType.CODE128);
     bc.setMagnification(2.0f);
     bcComponent.setBc(bc);
     jMenuItemCode128.setSelected(true);
@@ -356,7 +357,7 @@ public class JBarcodeSampleframe extends JFrame {
     // We have a barcode, so setup
     jCodeTextfield.setText(bc.getCode());
     bcComponent.setBc(bc);
-    String status = bc.getBarcodetypename();
+    String status = bc.getCodeType().toString();
     int mag = (int) (bc.getMagnification() * 100);
     status = status + " " + mag + "%";
     jTypeLabel.setText(status);
@@ -405,22 +406,23 @@ public class JBarcodeSampleframe extends JFrame {
       bc = new BarcodeInter25();
     } else if (e.getActionCommand().endsWith("EAN13")) {
       bc = new BarcodeEAN();
-      bc.setCodeType(Barcode.EAN13);
+      bc.setCodeType(BarcodeType.EAN13);
     } else if (e.getActionCommand().endsWith("EAN8")) {
       bc = new BarcodeEAN();
-      bc.setCodeType(Barcode.EAN8);
+      bc.setCodeType(BarcodeType.EAN8);
       bc.setCode("40125435");
     } else if (e.getActionCommand().endsWith("code128")) {
       bc = new Barcode128();
-      bc.setCodeType(Barcode.CODE128);
+      bc.setCodeType(BarcodeType.CODE128);
       bc.setCode("JBarcode");
     } else if (e.getActionCommand().endsWith("EAN128")) {
       bc = new Barcode128();
-      bc.setCodeType(Barcode.EAN128);
+      bc.setCodeType(BarcodeType.EAN128);
       bc.setCode("01040123453333361503123110123456");
       // bc.setCode("010401234533333610123456" + Barcode128.FNC1 + "15031231");
-    } else
+    } else {
       return;
+    }
 
     if (bc != null) { // barcode found!
       bc.setMagnification(2.0f);
