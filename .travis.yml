@@ -1,4 +1,4 @@
 language: java
 
 script:
-  mvn --settings .maven.xml -f jbarcode/pom.xml -B clean deploy
+  mvn -X --settings .maven.xml -f jbarcode/pom.xml -B clean deploy
