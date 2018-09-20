@@ -24,6 +24,15 @@
     <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
 
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
   <build>
     <plugins>
       <plugin>
@@ -47,6 +56,19 @@
           <pushChanges>true</pushChanges>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>3.0.1</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 
@@ -64,7 +86,6 @@
     <developerConnection>scm:git:https://github.com/borisklug/jbarcode.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
-
 
   <profiles>
     <profile>
