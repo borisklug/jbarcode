@@ -1,7 +1,4 @@
 language: java
 
-install:
-  echo "No install here"
-
 script:
   mvn --settings .maven.xml -f jbarcode/pom.xml -B clean deploy
