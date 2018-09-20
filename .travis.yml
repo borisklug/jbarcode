@@ -1,8 +1,4 @@
 language: java
 
 script:
-  mvn -X --settings .maven.xml -f jbarcode/pom.xml -B clean deploy
-  
-cache:
-  directories:
-  - $HOME/.m2
+  mvn --settings .maven.xml -f jbarcode/pom.xml -B clean deploy
