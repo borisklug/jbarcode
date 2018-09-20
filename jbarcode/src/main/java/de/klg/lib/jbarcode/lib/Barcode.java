@@ -23,18 +23,25 @@ public abstract class Barcode {
 
   /** A type of barcode */
   public static final int EAN13 = 1;
+
   /** A type of barcode */
   public static final int EAN8 = 2;
+
   /** A type of barcode */
   public static final int CODE128 = 3;
+
   /** A type of barcode */
   public static final int CODE128_RAW = 4;
+
   /** Code 128 with only charset A */
   public static final int CODE128_A = 5;
+
   /** A type of barcode */
   public static final int EAN128 = 6;
+
   /** A type of barcode */
   public static final int CODE128_UCC = 6; // same like EAN128
+
   /** A type of barcode */
   public static final int CODE25INTER = 7;
 
