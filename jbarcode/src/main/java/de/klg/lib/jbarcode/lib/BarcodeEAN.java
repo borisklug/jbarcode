@@ -169,11 +169,11 @@ public class BarcodeEAN extends Barcode {
    * @return the barcode
    */
   public byte[] getBarsEAN13() {
-    String _code = toRawText(code);
+    String rawCode = toRawText(code);
 
-    int code[] = new int[_code.length()];
+    int[] code = new int[rawCode.length()];
     for (int k = 0; k < code.length; ++k) {
-      code[k] = _code.charAt(k) - '0';
+      code[k] = rawCode.charAt(k) - '0';
     }
 
     byte[] bars = new byte[TOTALBARS_EAN13];
@@ -222,10 +222,10 @@ public class BarcodeEAN extends Barcode {
    * @return the barcode
    */
   public byte[] getBarsEAN8() {
-    String _code = toRawText(code);
-    int[] code = new int[_code.length()];
+    String rawCode = toRawText(code);
+    int[] code = new int[rawCode.length()];
     for (int k = 0; k < code.length; ++k) {
-      code[k] = _code.charAt(k) - '0';
+      code[k] = rawCode.charAt(k) - '0';
     }
     byte[] bars = new byte[TOTALBARS_EAN8];
     int pb = 0;
@@ -265,10 +265,10 @@ public class BarcodeEAN extends Barcode {
    * @return the barcode
    */
   public byte[] getBarsUPCE() {
-    String _code = toRawText(code);
-    int[] code = new int[_code.length()];
+    String rawCode = toRawText(code);
+    int[] code = new int[rawCode.length()];
     for (int k = 0; k < code.length; ++k) {
-      code[k] = _code.charAt(k) - '0';
+      code[k] = rawCode.charAt(k) - '0';
     }
 
     byte[] bars = new byte[TOTALBARS_UPCE];
@@ -308,10 +308,10 @@ public class BarcodeEAN extends Barcode {
    * @return the barcode
    */
   public byte[] getBarsSupplemental2() {
-    String _code = toRawText(code);
+    String rawCode = toRawText(code);
     int[] code = new int[2];
     for (int k = 0; k < code.length; ++k) {
-      code[k] = _code.charAt(k) - '0';
+      code[k] = rawCode.charAt(k) - '0';
     }
     byte[] bars = new byte[TOTALBARS_SUPP2];
     int pb = 0;

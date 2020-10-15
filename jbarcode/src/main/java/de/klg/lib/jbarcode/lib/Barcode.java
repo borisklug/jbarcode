@@ -57,7 +57,7 @@ public abstract class Barcode {
    *
    * IT IS NOT USED IN THIS VERSION!
    */
-  protected int smallwideMultiplyer = 1;
+  protected int smallwideMultiplier = 1;
 
   /**
    * The area left and right of the barcode which is supposed to stay white.
@@ -238,15 +238,15 @@ public abstract class Barcode {
   /**
    * Get the relation between small bars and wide bars. Normally 1
    */
-  public int getSmallwideMultiplyer() {
-    return smallwideMultiplyer;
+  public int getSmallwideMultiplier() {
+    return smallwideMultiplier;
   }
 
   /**
    * Set the relation between small bars and wide bars. Normally 1
    */
-  public void setSmallwideMultiplyer(int smallwideMultiplyer) {
-    this.smallwideMultiplyer = smallwideMultiplyer;
+  public void setSmallwideMultiplier(int smallwideMultiplier) {
+    this.smallwideMultiplier = smallwideMultiplier;
   }
 
   /**

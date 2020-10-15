@@ -92,7 +92,6 @@ public class BarcodeRenderer {
     int bcx = 0;
     int barwidth = bc.getBarWidth();
     int barheight = bc.getBarHeight();
-    int smallwidemult = bc.getSmallwideMultiplyer();
     for (int k = 0; k < bars.length; ++k) {
       int barvalue = bars[k];
       if (print) {
