@@ -66,7 +66,6 @@ public class BarcodeInter25 extends Barcode {
    * Calculates the checksum.
    *
    * @param text the numeric text
-   * @return the checksum
    */
   public static char getChecksum(String text) {
     int mul = 3;

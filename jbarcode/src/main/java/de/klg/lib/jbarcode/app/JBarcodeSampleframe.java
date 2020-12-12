@@ -42,7 +42,6 @@ import de.klg.lib.jbarcode.lib.BarcodeType;
  */
 public class JBarcodeSampleframe extends JFrame {
 
-  private JPanel contentPane;
   private JTextField jCodeTextfield = new JTextField();
   private JLabel jVersionlabel = new JLabel();
 
@@ -110,7 +109,7 @@ public class JBarcodeSampleframe extends JFrame {
 
   // Component initialization
   private void jbInit() {
-    contentPane = (JPanel) this.getContentPane();
+    JPanel contentPane = (JPanel) this.getContentPane();
 
     this.setSize(new Dimension(526, 309));
     this.setTitle("JBarcodeSampleApp");
@@ -460,7 +459,7 @@ public class JBarcodeSampleframe extends JFrame {
     aboutboxdlg.setLocation((frmSize.width - dlgSize.width) / 2 + loc.x, (frmSize.height - dlgSize.height) / 2 + loc.y);
     aboutboxdlg.setModal(true);
     aboutboxdlg.pack();
-    aboutboxdlg.show();
+    aboutboxdlg.setVisible(true);
   }
 
   /**

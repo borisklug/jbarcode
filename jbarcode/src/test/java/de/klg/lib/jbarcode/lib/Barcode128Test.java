@@ -14,10 +14,10 @@ import org.junit.jupiter.api.Test;
  *
  * @author Boris Klug
  */
-public class Barcode128Test {
+class Barcode128Test {
 
   @Test
-  public void testGetBarsCode128() {
+  void testGetBarsCode128() {
     Barcode128 bc128 = new Barcode128();
     bc128.setCode("01040123453333361503123110123456");
     bc128.setCodeType(BarcodeType.CODE128);

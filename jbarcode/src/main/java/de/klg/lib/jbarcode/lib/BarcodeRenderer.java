@@ -16,8 +16,8 @@ import java.util.Arrays;
 import javax.imageio.ImageIO;
 
 /**
- * This static class renders a barcode in a buffered image. It also provides a
- * method for writing this generated image to a jpg file (JDK 1.4 needed).
+ * This class renders a barcode in a buffered image. It also provides a method
+ * for writing this generated image to a jpg file.
  *
  * ToDo: 1) Drawing the text above the barcode (baseline < 0)
  *
@@ -39,10 +39,10 @@ public class BarcodeRenderer {
   public static BufferedImage getBarcodeBufimage(Barcode bc, String replacementtext) throws BarcodeException {
     // If no barcode is present, just draw this text
     if (bc == null) {
-      throw new BarcodeException("not barcode given to draw");
+      throw new BarcodeException("no barcode given to draw");
     }
 
-    // The maginication factor. We cast to int here
+    // The maginication factor
     int mag = (int) bc.getMagnification();
 
     int fontbaseline = bc.getBaseline();
@@ -165,7 +165,7 @@ public class BarcodeRenderer {
   /**
    * Export the barcode to a jpg file. png would be better
    *
-   * @return 0 if no error occures, !=0 in case of an error
+   * @return 0 if no error occurs, !=0 in case of an error
    */
   public static void exportJpg(Barcode bc, String filename) throws BarcodeException {
     File out = new File(filename);

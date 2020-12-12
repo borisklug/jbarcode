@@ -141,14 +141,14 @@ public class Barcode128 extends Barcode {
    * @return the packed digits, two digits per character
    */
   static String getPackedRawDigits(String text, int textIndex, int numDigits) {
-    String out = "";
+    StringBuilder out = new StringBuilder();
     while (numDigits > 0) {
       numDigits -= 2;
       int c1 = text.charAt(textIndex++) - '0';
       int c2 = text.charAt(textIndex++) - '0';
-      out += (char) (c1 * 10 + c2);
+      out.append((char) (c1 * 10 + c2));
     }
-    return out;
+    return out.toString();
   }
 
   /**
@@ -192,21 +192,24 @@ public class Barcode128 extends Barcode {
 
     // In mode "code128A" we force the charset A
     if (codeType == BarcodeType.CODE128_A) {
-      String out = "" + START_A;
+      StringBuilder out = new StringBuilder();
+      out.append(START_A);
       int tLen = text.length();
       int i = 0;
       while (i < tLen) {
         char currentchar = text.charAt(i);
-        if (currentchar > 127)
+        if (currentchar > 127) {
           throw new RuntimeException("There are illegal characters for barcode 128 in '" + text + "'.");
-        if (currentchar < ' ')
-          out += (char) (currentchar + 64); // control chars
-        else
-          out += (char) (currentchar - ' '); // normal chars
+        }
+        if (currentchar < ' ') {
+          out.append((char) (currentchar + 64)); // control chars
+        } else {
+          out.append((char) (currentchar - ' ')); // normal chars
+        }
         i++;
       }
 
-      return out;
+      return out.toString();
     }
 
     // In raw mode, just return the text. The caller is responsible
@@ -222,22 +225,24 @@ public class Barcode128 extends Barcode {
       return null; // we cant handle other codes than this
     }
 
-    String out = "";
+    StringBuilder out = new StringBuilder();
     int tLen = text.length();
 
     if (tLen == 0) { // empty barcode!
-      out += START_B;
-      if (ean128)
-        out += FNC1;
-      return out;
+      out.append(START_B);
+      if (ean128) {
+        out.append(FNC1);
+      }
+      return out.toString();
     }
 
     int c = 0;
     // check the characters inside the text
     for (int k = 0; k < tLen; ++k) {
       c = text.charAt(k);
-      if (c > 127)
+      if (c > 127) {
         throw new RuntimeException("There are illegal characters for barcode 128 in '" + text + "'.");
+      }
     }
 
     // Lookup which subset we start with
@@ -246,23 +251,26 @@ public class Barcode128 extends Barcode {
     int index = 0;
     if (isNextDigits(text, index, 2)) { // two digits or more, we start with subset C
       currentCode = START_C;
-      out += currentCode;
-      if (ean128)
-        out += FNC1;
-      out += getPackedRawDigits(text, index, 2);
+      out.append(currentCode);
+      if (ean128) {
+        out.append(FNC1);
+      }
+      out.append(getPackedRawDigits(text, index, 2));
       index += 2;
     } else if (c < ' ') { // no lowercase chars, we start with subset A
       currentCode = START_A;
-      out += currentCode;
-      if (ean128)
-        out += FNC1;
-      out += (char) (c + 64);
+      out.append(currentCode);
+      if (ean128) {
+        out.append(FNC1);
+      }
+      out.append((char) (c + 64));
       ++index;
     } else { // OK, we have all kind of chars, we start with subset B
-      out += currentCode;
-      if (ean128)
-        out += FNC1;
-      out += (char) (c - ' ');
+      out.append(currentCode);
+      if (ean128) {
+        out.append(FNC1);
+      }
+      out.append((char) (c - ' '));
       ++index;
     }
 
@@ -271,59 +279,59 @@ public class Barcode128 extends Barcode {
       case START_A:
         if (isNextDigits(text, index, 4)) {
           currentCode = START_C;
-          out += CODE_AB_TO_C;
-          out += getPackedRawDigits(text, index, 4);
+          out.append(CODE_AB_TO_C);
+          out.append(getPackedRawDigits(text, index, 4));
           index += 4;
         } else {
           c = text.charAt(index++);
           if (c > '_') {
             currentCode = START_B;
-            out += CODE_AC_TO_B;
-            out += (char) (c - ' ');
+            out.append(CODE_AC_TO_B);
+            out.append((char) (c - ' '));
           } else if (c < ' ') {
-            out += (char) (c + 64);
+            out.append((char) (c + 64));
           } else {
-            out += (char) (c - ' ');
+            out.append((char) (c - ' '));
           }
         }
         break;
       case START_B:
         if (isNextDigits(text, index, 4)) {
           currentCode = START_C;
-          out += CODE_AB_TO_C;
-          out += getPackedRawDigits(text, index, 4);
+          out.append(CODE_AB_TO_C);
+          out.append(getPackedRawDigits(text, index, 4));
           index += 4;
         } else {
           c = text.charAt(index++);
           if (c < ' ') {
             currentCode = START_A;
-            out += CODE_BC_TO_A;
-            out += (char) (c + 64);
+            out.append(CODE_BC_TO_A);
+            out.append((char) (c + 64));
           } else {
-            out += (char) (c - ' ');
+            out.append((char) (c - ' '));
           }
         }
         break;
       case START_C:
         if (isNextDigits(text, index, 2)) {
-          out += getPackedRawDigits(text, index, 2);
+          out.append(getPackedRawDigits(text, index, 2));
           index += 2;
         } else {
           c = text.charAt(index++);
           if (c < ' ') {
-            currentCode = START_A;
-            out += CODE_BC_TO_A;
-            out += (char) (c + 64);
+            out.append(START_A);
+            out.append(CODE_BC_TO_A);
+            out.append((char) (c + 64));
           } else {
-            currentCode = START_B;
-            out += CODE_AC_TO_B;
-            out += (char) (c - ' ');
+            out.append(START_B);
+            out.append(CODE_AC_TO_B);
+            out.append((char) (c - ' '));
           }
         }
         break;
       }
     }
-    return out;
+    return out.toString();
   }
 
   /**

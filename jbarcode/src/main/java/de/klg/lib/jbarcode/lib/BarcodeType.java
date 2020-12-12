@@ -11,21 +11,16 @@ package de.klg.lib.jbarcode.lib;
  */
 public enum BarcodeType {
 
-  EAN8,
-  EAN13,
+  EAN8, EAN13,
 
-  CODE128,
-  CODE128_RAW,
-  CODE128_A,
+  CODE128, CODE128_RAW, CODE128_A,
 
   EAN128,
 
-  CODE128_UCC,
-  CODE25INTER;
+  CODE128_UCC, CODE25INTER;
 
   /*
-   * not yet implemented : 
-   * UPCA, UPCE, SUPP2, SUPPS, POSTNET, PLANET, CODABAR
+   * not yet implemented : UPCA, UPCE, SUPP2, SUPPS, POSTNET, PLANET, CODABAR
    */
 
   @Override
