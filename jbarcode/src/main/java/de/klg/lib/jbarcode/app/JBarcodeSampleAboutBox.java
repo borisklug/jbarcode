@@ -1,16 +1,9 @@
-/*
- * PDIS Process Data Information System
+/* ----------------------------------------------------------------------------
+ * JBarcode - https://github.com/borisklug/jbarcode
  *
- *  Project: Java Barcode
- * Customer: control IT
- *
- * ----------------------------------------------------------------------------
- * (c) copyright 2000-2003 by control Information Technology GmbH,
- * Koblenz, Germany, http://control.de/, all rights reserved
- * ----------------------------------------------------------------------------
- *
- * $Id: $
- */
+ * Written by Boris Klug, https://klg.de/
+ * Licensed under the Apache License Version 2.0
+ * ---------------------------------------------------------------------------- */
 package de.klg.lib.jbarcode.app;
 
 import java.awt.AWTEvent;

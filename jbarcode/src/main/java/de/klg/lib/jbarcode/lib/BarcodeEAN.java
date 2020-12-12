@@ -1,10 +1,9 @@
-/*
- * JBarcode - a Java package for drawing barcodes.
+/* ----------------------------------------------------------------------------
+ * JBarcode - https://github.com/borisklug/jbarcode
  *
- * Inspired by the barcode component of iText
- *
- * @author Boris Klug
- */
+ * Written by Boris Klug, https://klg.de/
+ * Licensed under the Apache License Version 2.0
+ * ---------------------------------------------------------------------------- */
 package de.klg.lib.jbarcode.lib;
 
 /**
@@ -12,7 +11,7 @@ package de.klg.lib.jbarcode.lib;
  *
  * EAN 13 EAN 8
  *
- * In the near future: UPCA, UPCE, suplemental 2 and 5
+ * In the near future: UPCA, UPCE, supplemental 2 and 5
  *
  * @author Boris Klug
  */
