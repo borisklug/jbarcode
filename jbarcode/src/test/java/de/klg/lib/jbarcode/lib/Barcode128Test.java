@@ -1,14 +1,13 @@
-/*
- * JBarcode - a Java package for drawing barcodes.
+/* ----------------------------------------------------------------------------
+ * JBarcode - https://github.com/borisklug/jbarcode
  *
- * Inspired by the barcode component of iText
- *
- * @author Boris Klug
- */
+ * Written by Boris Klug, https://klg.de/
+ * Licensed under the Apache License Version 2.0
+ * ---------------------------------------------------------------------------- */
 package de.klg.lib.jbarcode.lib;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test for barcode 128 generation
@@ -28,7 +27,6 @@ public class Barcode128Test {
         2, 3, 2, 2, 1, 2, 3, 2, 1, 2, 2, 1, 3, 1, 2, 1, 1, 2, 2, 3, 2, 1, 3, 1, 1, 2, 3, 3, 3, 1, 1, 2, 1, 2, 2, 3, 1,
         1, 2, 2, 3, 3, 1, 1, 1, 2 };
     byte[] actual = bc128.getBars();
-    Assert.assertArrayEquals(expected, actual);
-
+    Assertions.assertArrayEquals(expected, actual);
   }
 }
