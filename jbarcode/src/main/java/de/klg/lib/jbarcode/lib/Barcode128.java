@@ -335,11 +335,7 @@ public class Barcode128 extends Barcode {
   }
 
   /**
-   * Generates the bars. The input is the actual barcodes, not the human readable
-   * text.
-   *
-   * @param text the barcode
-   * @return the bars
+   * Generates the bars. The input is the actual barcodes, not the human readable text.
    */
   @Override
   public byte[] getBars() {

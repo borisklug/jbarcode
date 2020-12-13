@@ -52,7 +52,7 @@ public abstract class Barcode {
   protected int barWidth;
 
   /**
-   * The The multiplyer for the relation small bar <-> wide bar. Normally it is 1
+   * The multiplier for the relation small bar to wide bar. Normally it is 1.
    *
    * IT IS NOT USED IN THIS VERSION!
    */
@@ -144,7 +144,7 @@ public abstract class Barcode {
   /**
    * Sets the size of the text.
    * 
-   * @param size the size of the text
+   * @param fontsize the size of the text
    */
   public void setFontsize(int fontsize) {
     this.fontsize = fontsize;

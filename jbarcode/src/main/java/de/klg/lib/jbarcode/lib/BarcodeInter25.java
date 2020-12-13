@@ -80,10 +80,6 @@ public class BarcodeInter25 extends Barcode {
 
   /**
    * Creates the bars for the barcode.
-   *
-   * @param text the text. It can contain non numeric characters, they are
-   *             stripped before processing
-   * @return the barcode
    */
   @Override
   public byte[] getBars() {

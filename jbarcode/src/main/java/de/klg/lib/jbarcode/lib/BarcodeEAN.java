@@ -344,7 +344,7 @@ public class BarcodeEAN extends Barcode {
   /**
    * Creates the bars for the barcode supplemental 5.
    *
-   * @param _code the text with 5 digits
+   * @param theCode the text with 5 digits
    * @return the barcode
    */
   public static byte[] getBarsSupplemental5(String theCode) {

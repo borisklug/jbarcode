@@ -19,8 +19,6 @@ import javax.imageio.ImageIO;
  * This class renders a barcode in a buffered image. It also provides a method
  * for writing this generated image to a jpg file.
  *
- * ToDo: 1) Drawing the text above the barcode (baseline < 0)
- *
  * @author Boris Klug
  */
 public class BarcodeRenderer {
@@ -164,8 +162,6 @@ public class BarcodeRenderer {
 
   /**
    * Export the barcode to a jpg file. png would be better
-   *
-   * @return 0 if no error occurs, !=0 in case of an error
    */
   public static void exportJpg(Barcode bc, String filename) throws BarcodeException {
     File out = new File(filename);

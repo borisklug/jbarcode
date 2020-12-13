@@ -20,6 +20,11 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * About box of the sample app
+ * 
+ * @author Boris Klug
+ */
 public class JBarcodeSampleAboutBox extends JDialog implements ActionListener {
 
   private JPanel panel1 = new JPanel();

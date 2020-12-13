@@ -11,6 +11,7 @@ package de.klg.lib.jbarcode.lib;
  *
  * @author Boris Klug
  */
+@SuppressWarnings("serial")
 public class BarcodeException extends Exception {
 
   /**

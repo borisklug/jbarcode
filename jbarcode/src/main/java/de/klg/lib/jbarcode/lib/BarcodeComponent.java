@@ -16,6 +16,7 @@ import javax.swing.JComponent;
  *
  * @author Boris Klug
  */
+@SuppressWarnings("serial")
 public class BarcodeComponent extends JComponent {
 
   /**
