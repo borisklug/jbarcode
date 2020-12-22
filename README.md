@@ -1,5 +1,5 @@
 # jbarcode
 
-A library to create 2d barcode with Java
+A simple Java library for creating 2d barcodes
 
-Travis CI-Build: [![Build Status](https://travis-ci.org/borisklug/jbarcode.svg?branch=master)](https://travis-ci.org/borisklug/jbarcode)
+Travis CI-Build: [![Build Status](https://travis-ci.com/borisklug/jbarcode.svg?branch=master)](https://travis-ci.org/borisklug/jbarcode)
