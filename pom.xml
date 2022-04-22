@@ -4,7 +4,7 @@
 
   <groupId>de.klg.utils.jbarcode</groupId>
   <artifactId>jbarcode</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.0-beta-1</version>
 
   <name>jbarcode</name>
   <description>A program for generating 2d barcodes</description>
