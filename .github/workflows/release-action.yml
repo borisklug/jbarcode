@@ -1,3 +1,6 @@
+# Action is taken from https://theoverengineered.blog/posts/publishing-my-first-artifact-to-maven-central-using-github-actions
+# Beware: Its OSSRH_TOKEN, not OSSRH_PASSWORD!
+
 name: release and push to central
 on:
   push:
