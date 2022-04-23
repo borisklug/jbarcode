@@ -1,5 +1,5 @@
 # Action is taken from https://theoverengineered.blog/posts/publishing-my-first-artifact-to-maven-central-using-github-actions
-# Beware: Its OSSRH_TOKEN, not OSSRH_PASSWORD!
+# Beware: In the blog OSSRH_TOKEN and OSSRH_PASSWORD are both used!
 
 name: Build release and push to Maven Central
 on:
@@ -36,5 +36,5 @@ jobs:
             deploy
         env:
           MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+          MAVEN_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
           MAVEN_GPG_PASSPHRASE: ${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}
