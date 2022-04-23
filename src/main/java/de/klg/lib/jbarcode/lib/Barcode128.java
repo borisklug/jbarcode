@@ -113,8 +113,7 @@ public class Barcode128 extends Barcode {
   }
 
   /**
-   * Returns <CODE>true</CODE> if the next <CODE>numDigits</CODE> starting from
-   * index <CODE>textIndex</CODE> are numeric.
+   * Returns true if the next numDigits starting from index textIndex are numeric.
    *
    * @param text      the text to check
    * @param textIndex where to check from
@@ -155,7 +154,7 @@ public class Barcode128 extends Barcode {
    * Converts the text to human readable text. This text is used for printing
    * below the barcode
    *
-   * Only for EAN128 this method does something. It calles the routines in the
+   * Only for EAN128 this method does something. It calls the routines in the
    * class BarcodeEAN128Textdecoder
    */
   @Override

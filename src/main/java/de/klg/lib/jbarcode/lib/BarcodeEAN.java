@@ -385,8 +385,7 @@ public class BarcodeEAN extends Barcode {
   /**
    * Return the bars of an EAN13 or EAN8 barcode
    *
-   * @return a byte array this the widths of the bars or null when something when
-   *         wrong
+   * @return a byte array this the widths of the bars or null when something when wrong
    */
   @Override
   public byte[] getBars() {
@@ -437,7 +436,7 @@ public class BarcodeEAN extends Barcode {
     if (codeType == BarcodeType.EAN13) {
       // 13 chars..
       int strech = 7;
-      int x = 5;
+      float x = 5;
       pos[0] = new BarcodePoint(-8, 0);
       pos[1] = new BarcodePoint(x + (strech * 0), 0);
       pos[2] = new BarcodePoint(x + (strech * 1), 0);
@@ -457,7 +456,7 @@ public class BarcodeEAN extends Barcode {
     } else if (codeType == BarcodeType.EAN8) {
       // 8 chars to go
       int strech = 7;
-      int x = 4;
+      float x = 4;
       pos[0] = new BarcodePoint(x + (strech * 0), 0);
       pos[1] = new BarcodePoint(x + (strech * 1), 0);
       pos[2] = new BarcodePoint(x + (strech * 2), 0);

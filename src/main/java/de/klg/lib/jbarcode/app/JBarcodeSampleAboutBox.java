@@ -59,7 +59,7 @@ public class JBarcodeSampleAboutBox extends JDialog implements ActionListener {
     gridLayout1.setVgap(5);
     gridLayout1.setColumns(1);
     productLabel.setText(product);
-    label3.setText("written by Boris A. Klug");
+    label3.setText("written by Boris Klug");
     insetsPanel3.setLayout(gridLayout1);
     insetsPanel3.setBorder(BorderFactory.createEmptyBorder(10, 60, 10, 10));
     button1.setText("OK");

@@ -12,7 +12,6 @@ import java.awt.Dimension;
 import java.awt.GraphicsEnvironment;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 
 import javax.swing.ButtonGroup;
@@ -38,7 +37,7 @@ import de.klg.lib.jbarcode.lib.BarcodeType;
 /**
  * The frame with the barcode and stuff of the sample application for JBarcode
  *
- * @author Boris A. Klug
+ * @author Boris Klug
  */
 public class JBarcodeSampleframe extends JFrame {
 
@@ -73,7 +72,6 @@ public class JBarcodeSampleframe extends JFrame {
 
   // This button group hold all barcode menus
   private ButtonGroup barcodegroup = new ButtonGroup();
-  private JPanel jPanel2 = new JPanel();
   private JPanel jPanel3 = new JPanel();
   private JLabel jLabel1 = new JLabel();
   private BorderLayout borderLayout2 = new BorderLayout();
@@ -115,15 +113,10 @@ public class JBarcodeSampleframe extends JFrame {
     this.setTitle("JBarcodeSampleApp");
 
     jCodeTextfield.setPreferredSize(new Dimension(80, 17));
-    jCodeTextfield.setToolTipText("Hier den Code eingeben");
+    jCodeTextfield.setToolTipText("Please enter the code ");
     jCodeTextfield.setText("");
 
-    jCodeTextfield.addActionListener(new java.awt.event.ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        jCodeTextfield_actionPerformed(e);
-      }
-    });
+    jCodeTextfield.addActionListener(this::jCodeTextfieldActionPerformed);
 
     contentPane.setEnabled(true);
     jVersionlabel.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -134,115 +127,45 @@ public class JBarcodeSampleframe extends JFrame {
 
     jMenuProps.setText("Properties");
     jCheckBoxMenuItemDrawText.setText("Draw Text");
-    jCheckBoxMenuItemDrawText.addActionListener(new java.awt.event.ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        jCheckBoxMenuItemDrawText_actionPerformed(e);
-      }
-    });
+    jCheckBoxMenuItemDrawText.addActionListener(this::jCheckBoxMenuItemDrawTextActionPerformed);
     jMenuMagn.setText("Magnification");
     jMenuHelp.setText("Help");
     jMenuItemAbout.setText("About");
-    jMenuItemAbout.addActionListener(new java.awt.event.ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        jMenuItemAbout_actionPerformed(e);
-      }
-    });
+    jMenuItemAbout.addActionListener(this::jMenuItemAboutActionPerformed);
 
     jMenuItemMag400.setText("400%");
-    jMenuItemMag400.addActionListener(new java.awt.event.ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        jMenuItemMagX_actionPerformed(e);
-      }
-    });
+    jMenuItemMag400.addActionListener(this::jMenuItemMagXActionPerformed);
     jMenuItemMag200.setText("200%");
-    jMenuItemMag200.addActionListener(new java.awt.event.ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        jMenuItemMagX_actionPerformed(e);
-      }
-    });
+    jMenuItemMag200.addActionListener(this::jMenuItemMagXActionPerformed);
     jMenuItemMag100.setText("100%");
-    jMenuItemMag100.addActionListener(new java.awt.event.ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        jMenuItemMagX_actionPerformed(e);
-      }
-    });
+    jMenuItemMag100.addActionListener(this::jMenuItemMagXActionPerformed);
 
     jMenuItemCode128.setText("Code128");
     jMenuItemCode128.setActionCommand("code128");
-    jMenuItemCode128.addActionListener(new java.awt.event.ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        jMenuItemSetBarcode_actionPerformed(e);
-      }
-    });
+    jMenuItemCode128.addActionListener(this::jMenuItemSetBarcodeActionPerformed);
     jMenuItemEAN128.setText("EAN128");
-    jMenuItemEAN128.addActionListener(new java.awt.event.ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        jMenuItemSetBarcode_actionPerformed(e);
-      }
-    });
+    jMenuItemEAN128.addActionListener(this::jMenuItemSetBarcodeActionPerformed);
     jMenuItemEAN13.setText("EAN13");
-    jMenuItemEAN13.addActionListener(new java.awt.event.ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        jMenuItemSetBarcode_actionPerformed(e);
-      }
-    });
+    jMenuItemEAN13.addActionListener(this::jMenuItemSetBarcodeActionPerformed);
     jMenuItemEAN8.setText("EAN8");
-    jMenuItemEAN8.addActionListener(new java.awt.event.ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        jMenuItemSetBarcode_actionPerformed(e);
-      }
-    });
-    jMenuItemInter25.setText("2 aus 5 interleave");
+    jMenuItemEAN8.addActionListener(this::jMenuItemSetBarcodeActionPerformed);
+    jMenuItemInter25.setText("2 of 5 interleaved");
     jMenuItemInter25.setActionCommand("2of5i");
-    jMenuItemInter25.addActionListener(new java.awt.event.ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        jMenuItemSetBarcode_actionPerformed(e);
-      }
-    });
+    jMenuItemInter25.addActionListener(this::jMenuItemSetBarcodeActionPerformed);
 
     jPanel3.setLayout(borderLayout2);
     jLabel1.setText("Code:");
     jMenuTextalign.setText("Textalign");
     jMenuItemTextLeft.setText("Left");
-    jMenuItemTextLeft.addActionListener(new java.awt.event.ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        jMenuItemTextAlign_actionPerformed(e);
-      }
-    });
+    jMenuItemTextLeft.addActionListener(this::jMenuItemTextAlignActionPerformed);
     jMenuItemTextCenter.setText("Center");
-    jMenuItemTextCenter.addActionListener(new java.awt.event.ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        jMenuItemTextAlign_actionPerformed(e);
-      }
-    });
+    jMenuItemTextCenter.addActionListener(this::jMenuItemTextAlignActionPerformed);
     jMenuItemTextRight.setText("Right");
-    jMenuItemTextRight.addActionListener(new java.awt.event.ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        jMenuItemTextAlign_actionPerformed(e);
-      }
-    });
+    jMenuItemTextRight.addActionListener(this::jMenuItemTextAlignActionPerformed);
     jMenuTextfont.setText("Textfont");
 
     jMenuItemPrint.setText("Print Barcode...");
-    jMenuItemPrint.addActionListener(new java.awt.event.ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        jMenuItemPrint_actionPerformed(e);
-      }
-    });
+    jMenuItemPrint.addActionListener(this::jMenuItemPrintActionPerformed);
     jPanel1.add(jTypeLabel, BorderLayout.WEST);
     jPanel1.add(jVersionlabel, BorderLayout.CENTER);
     contentPane.add(jPanel3, BorderLayout.NORTH);
@@ -254,19 +177,9 @@ public class JBarcodeSampleframe extends JFrame {
     // Build the menu
     jMenuFile.setText("File");
     jMenuFileExit.setText("Exit");
-    jMenuFileExit.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        jMenuFileExit_actionPerformed(e);
-      }
-    });
+    jMenuFileExit.addActionListener(this::jMenuFileExitActionPerformed);
     jMenuItemExport.setText("Export to /tmp/barcode.jpg");
-    jMenuItemExport.addActionListener(new java.awt.event.ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        jMenuItemExport_actionPerformed(e);
-      }
-    });
+    jMenuItemExport.addActionListener(this::jMenuItemExportActionPerformed);
 
     jMenuBarcode.setText("Barcode");
     jMenuFile.add(jMenuItemPrint);
@@ -308,12 +221,7 @@ public class JBarcodeSampleframe extends JFrame {
     for (int i = 0; i < fontnames.length; ++i) {
       JMenuItem menuitem = new JMenuItem(fontnames[i]);
       menuitem.setActionCommand(fontnames[i]);
-      menuitem.addActionListener(new java.awt.event.ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-          jFontMenu_actionPerformed(e);
-        }
-      });
+      menuitem.addActionListener(this::jFontMenuActionPerformed);
       jMenuTextfont.add(menuitem);
     }
 
@@ -323,8 +231,7 @@ public class JBarcodeSampleframe extends JFrame {
   /**
    * User chooses another font so set the font name in the barcode object
    */
-
-  public void jFontMenu_actionPerformed(ActionEvent e) {
+  public void jFontMenuActionPerformed(ActionEvent e) {
     if (bcComponent.getBc() != null) {
       bcComponent.getBc().setFontname(e.getActionCommand());
       this.repaint();
@@ -332,8 +239,10 @@ public class JBarcodeSampleframe extends JFrame {
     }
   }
 
-  // File | Exit action performed
-  public void jMenuFileExit_actionPerformed(ActionEvent e) {
+  /**
+   * Exit program
+   */
+  public void jMenuFileExitActionPerformed(ActionEvent e) {
     System.exit(0);
   }
 
@@ -369,11 +278,6 @@ public class JBarcodeSampleframe extends JFrame {
     jCheckBoxMenuItemDrawText.setState(bc.isDrawtext());
 
     switch (mag) {
-    case 100:
-      jMenuItemMag100.setSelected(true);
-      jMenuItemMag200.setSelected(false);
-      jMenuItemMag400.setSelected(false);
-      break;
     case 200:
       jMenuItemMag100.setSelected(false);
       jMenuItemMag200.setSelected(true);
@@ -384,6 +288,11 @@ public class JBarcodeSampleframe extends JFrame {
       jMenuItemMag200.setSelected(false);
       jMenuItemMag400.setSelected(true);
       break;
+    default:
+      jMenuItemMag100.setSelected(true);
+      jMenuItemMag200.setSelected(false);
+      jMenuItemMag400.setSelected(false);
+      break;
     }
 
   }
@@ -391,7 +300,7 @@ public class JBarcodeSampleframe extends JFrame {
   /**
    * The textfield with the code was changed so build a new barcode
    */
-  void jCodeTextfield_actionPerformed(ActionEvent e) {
+  void jCodeTextfieldActionPerformed(ActionEvent e) {
     String code = jCodeTextfield.getText();
     bcComponent.getBc().setCode(code);
     // System.err.println(bcComponent.getBc().toString());
@@ -404,7 +313,7 @@ public class JBarcodeSampleframe extends JFrame {
    *
    * @param e the action event
    */
-  void jMenuItemSetBarcode_actionPerformed(ActionEvent e) {
+  void jMenuItemSetBarcodeActionPerformed(ActionEvent e) {
     Barcode bc = null;
 
     if (e.getActionCommand().endsWith("2of5i")) {
@@ -429,18 +338,16 @@ public class JBarcodeSampleframe extends JFrame {
       return;
     }
 
-    if (bc != null) { // barcode found!
-      bc.setMagnification(2.0f);
-      bcComponent.setBc(bc);
-      setupMainFrame();
-      bcComponent.repaint();
-    }
+    bc.setMagnification(2.0f);
+    bcComponent.setBc(bc);
+    setupMainFrame();
+    bcComponent.repaint();
   }
 
   /**
    * Menucallback: Draw text below barcode on/off
    */
-  void jCheckBoxMenuItemDrawText_actionPerformed(ActionEvent e) {
+  void jCheckBoxMenuItemDrawTextActionPerformed(ActionEvent e) {
     if (bcComponent.getBc() != null) { // barcode exists!!
       bcComponent.getBc().setDrawtext(jCheckBoxMenuItemDrawText.getState());
       bcComponent.repaint();
@@ -451,7 +358,7 @@ public class JBarcodeSampleframe extends JFrame {
   /**
    * Show the about box
    */
-  void jMenuItemAbout_actionPerformed(ActionEvent e) {
+  void jMenuItemAboutActionPerformed(ActionEvent e) {
     JBarcodeSampleAboutBox aboutboxdlg = new JBarcodeSampleAboutBox(this, "JBarcode");
     Dimension dlgSize = aboutboxdlg.getPreferredSize();
     Dimension frmSize = getSize();
@@ -467,7 +374,7 @@ public class JBarcodeSampleframe extends JFrame {
    *
    * @param e the actionevent from the menu
    */
-  void jMenuItemMagX_actionPerformed(ActionEvent e) {
+  void jMenuItemMagXActionPerformed(ActionEvent e) {
     if (bcComponent.getBc() == null) {
       return;
     }
@@ -487,9 +394,9 @@ public class JBarcodeSampleframe extends JFrame {
   /**
    * Sets the text adjustment to left, center or right
    *
-   * @param e the actionevent from the menu
+   * @param e the action event from the menu
    */
-  void jMenuItemTextAlign_actionPerformed(ActionEvent e) {
+  void jMenuItemTextAlignActionPerformed(ActionEvent e) {
     if (bcComponent.getBc() == null) {
       return;
     }
@@ -511,11 +418,12 @@ public class JBarcodeSampleframe extends JFrame {
    *
    * @param e the actionevent from the menu
    */
-  void jMenuItemExport_actionPerformed(ActionEvent e) {
+  void jMenuItemExportActionPerformed(ActionEvent e) {
     if (bcComponent.getBc() != null) {
       try {
         BarcodeRenderer.exportJpg(bcComponent.getBc(), "/tmp/barcode.jpg");
       } catch (Exception ex) {
+        System.err.println("Cant export barcode to '/tmp/barcode.jpg'");
       }
     }
   }
@@ -523,9 +431,9 @@ public class JBarcodeSampleframe extends JFrame {
   /**
    * Callback for printing the barcode
    *
-   * @param e the actionevent from the menu
+   * @param e the action event from the menu
    */
-  void jMenuItemPrint_actionPerformed(ActionEvent e) {
+  void jMenuItemPrintActionPerformed(ActionEvent e) {
     // does nothing
   }
 
