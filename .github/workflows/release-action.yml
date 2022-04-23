@@ -16,10 +16,10 @@ jobs:
         with:
           java-version: 1.8
           server-id: ossrh
-          server-username: ${{ secrets.OSSRH_USERNAME }}
-          server-password: ${{ secrets.OSSRH_TOKEN }}
+          server-username: MAVEN_USERNAME
+          server-password: MAVEN_PASSWORD
           gpg-private-key: ${{ secrets.OSSRH_GPG_SECRET_KEY }}
-          gpg-passphrase:  ${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}
+          gpg-passphrase: MAVEN_GPG_PASSPHRASE
       - name: Build artifact
         run: mvn clean package
       - name: Create release
@@ -34,3 +34,7 @@ jobs:
             --no-transfer-progress \
             --batch-mode \
             deploy
+        env:
+          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+          MAVEN_GPG_PASSPHRASE: ${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}
